@@ -10,5 +10,7 @@ const { PORT } = process.env;
   app.listen(PORT || 3000, async () => {
     console.log(`App listening on port ${process.env.PORT}!`);
   });
-  module.exports.handler = serverless(app);
 })();
+
+module.exports = app;
+module.exports.handler = serverless(app);
