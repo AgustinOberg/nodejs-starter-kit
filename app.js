@@ -1,16 +1,14 @@
-import {} from 'dotenv/config';
-import connection from './src/database/connection';
+import 'dotenv/config';
 import serverless from 'serverless-http';
 import app from './src/server';
-const { connectToDatabase } = connection;
-const { PORT } = process.env;
+import { connectToDatabase } from './src/database/connection';
+import { runLocal } from './src/utils/debug';
 
-(async () => {
+runLocal(app);
+
+module.exports.handler = async (event, context) => {
   await connectToDatabase();
-  app.listen(PORT || 3000, async () => {
-    console.log(`App listening on port ${process.env.PORT}!`);
-  });
-})();
-
-module.exports = app;
-module.exports.handler = serverless(app);
+  const serverlessApp = serverless(app);
+  const response = await serverlessApp(event, context);
+  return response;
+};

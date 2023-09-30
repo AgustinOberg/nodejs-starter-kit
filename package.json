@@ -7,7 +7,7 @@
     "coverage": "nyc --reporter=text npm run test",
     "deploy:development": "NODE_ENV=development npm run internal-deploy",
     "deploy:production": "NODE_ENV=production npm run internal-deploy",
-    "dev": "nodemon --exec babel-node ./app.js",
+    "dev": "NODE_ENV=local nodemon --exec babel-node ./app.js",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
     "internal-babel-transpile": "rm -rf dist && babel . -d dist --ignore node_modules,test --copy-files --no-copy-ignored",
