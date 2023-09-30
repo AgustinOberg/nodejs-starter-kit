@@ -1,0 +1,27 @@
+service: agus-express-testing-app
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: dev
+  region: us-east-1
+
+  useDotenv: true
+  environment:
+    NODE_ENV: development
+    BASE_URL: http://localhost:3000/api/
+    PORT: 3000
+    MONGO_USERNAME: agustinoberg
+    MONGO_PASSWORD: IGX89PfhhBLcUOve
+    MONGO_HOST: testingcluster.2zs5eps.mongodb.net
+    MONGO_PORT: 27017
+    MONGO_DATABASE: testing-database
+    MONGO_SSL: true
+    MONGO_CONNECTION_TYPE: mongodb+srv
+
+functions:
+  app:
+    handler: app.handler
+    events:
+      - http: ANY
+      - http: 'ANY {proxy+}'
