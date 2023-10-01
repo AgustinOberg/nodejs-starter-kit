@@ -1,17 +1,17 @@
+import axios from 'axios';
 import chai from 'chai';
+import faker from 'faker';
+import { StatusCodes } from 'http-status-codes';
 import mocha from 'mocha';
 import '../../app';
-import endpoints from '../common/endpoints';
-import axios from 'axios';
-import { StatusCodes } from 'http-status-codes';
-import { generateServerData } from '../common/factories/serverFactory';
-import { assertHasErrorMessage } from '../common/utils/testUtil';
 import errorCodes from '../../src/constants/errorCodes';
-import faker from 'faker';
 import Server, {
   NAME_MAX_LENGTH,
   NAME_MIN_LENGTH,
 } from '../../src/models/server';
+import endpoints from '../common/endpoints';
+import { generateServerData } from '../common/factories/serverFactory';
+import { assertHasErrorMessage } from '../common/utils/testUtil';
 
 const { describe, it, after } = mocha;
 const { assert } = chai;

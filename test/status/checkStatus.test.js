@@ -1,10 +1,10 @@
+import axios from 'axios';
 import chai from 'chai';
+import faker from 'faker';
+import { StatusCodes } from 'http-status-codes';
 import mocha from 'mocha';
 import '../../app';
 import endpoints from '../common/endpoints';
-import axios from 'axios';
-import { StatusCodes } from 'http-status-codes';
-import faker from 'faker';
 
 const { describe, it } = mocha;
 const { assert } = chai;

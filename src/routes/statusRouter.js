@@ -1,14 +1,14 @@
 import express from 'express';
 
+
+import mongoose from 'mongoose';
+import runValidations from '@/middlewares/common/validations/runValidations';
+import { createDbServer, getStatus, sendStatus } from '@/middlewares/status';
 import {
   validateFrom,
   validateName,
   validateStatus,
 } from '@/middlewares/status/validations';
-
-import mongoose from 'mongoose';
-import runValidations from '@/middlewares/common/validations/runValidations';
-import { createDbServer, getStatus, sendStatus } from '@/middlewares/status';
 
 export const statusRouter = express.Router();
 const checkValidations = runValidations([validateFrom]);
