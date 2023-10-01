@@ -1,6 +1,6 @@
-org: agusoberg11
-app: agus-express-testing-app
-service: agus-express-testing-app
+org: your-organization-name
+app: your-serverless-app-name
+service: your-service-name
 frameworkVersion: '3'
 ##### TODO: domain
 plugins:

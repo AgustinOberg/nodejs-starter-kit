@@ -1,25 +1,25 @@
 {
   "name": "nodejs-starter",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "This is a starter project for NodeJS with Express and MongoDB using Serverless Framework",
   "main": "app.js",
   "scripts": {
-    "coverage": "nyc --reporter=text npm run test",
-    "deploy:development": "NODE_ENV=development npm run internal-deploy",
-    "deploy:production": "NODE_ENV=production npm run internal-deploy",
+    "coverage": "nyc --reporter=text pnpm run test",
+    "deploy:development": "NODE_ENV=development pnpm run internal-deploy",
+    "deploy:production": "NODE_ENV=production pnpm run internal-deploy",
     "dev": "NODE_ENV=local nodemon --exec babel-node ./app.js",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
     "internal-babel-transpile": "rm -rf dist && babel . -d dist --ignore node_modules,test --copy-files --no-copy-ignored",
-    "internal-build": "npm run internal-babel-transpile && npm run internal-copy-modules && npm run internal-merge-env",
+    "internal-build": "pnpm run internal-babel-transpile && pnpm run internal-copy-modules && pnpm run internal-merge-env",
     "internal-copy-modules": "rm -rf dist/node_modules && rm -rf dist/migrations && cd dist && npm install --only=prod && rm -rf .git && cd ..",
-    "internal-deploy": "npm run internal-build && serverless deploy --stage=$NODE_ENV",
+    "internal-deploy": "pnpm run internal-build && serverless deploy --stage=$NODE_ENV",
     "internal-merge-env": "cp .env.$NODE_ENV dist/.env",
     "internal-remove": "serverless remove --stage=$NODE_ENV",
     "lint:check": "eslint .",
     "lint:fix": "eslint --fix .",
-    "remove:development": "NODE_ENV=development npm run internal-remove",
-    "remove:production": "NODE_ENV=production npm run internal-remove",
+    "remove:development": "NODE_ENV=development pnpm run internal-remove",
+    "remove:production": "NODE_ENV=production pnpm run internal-remove",
     "start": "babel-node app.js",
     "test": "env-cmd -f ./.env.test mocha --timeout 60000 --recursive --require @babel/register --exit"
   },
@@ -54,7 +54,8 @@
     "mocha": "^10.2.0",
     "nodemon": "^3.0.1",
     "prettier": "^3.0.0",
-    "serverless-dotenv-plugin": "^6.0.0"
+    "serverless-dotenv-plugin": "^6.0.0",
+    "serverless": "^3.35.2"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.22.6",
