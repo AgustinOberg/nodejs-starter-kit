@@ -3,16 +3,7 @@ import { isTrue } from '../utils/typeUtil';
 
 let cachedDB = null;
 
-const connectToDatabase = async () => {
-  const {
-    MONGO_CONNECTION_TYPE,
-    MONGO_USERNAME,
-    MONGO_PASSWORD,
-    MONGO_HOST,
-    MONGO_DATABASE,
-    MONGO_SSL,
-  } = process.env;
-
+export const connectToDatabase = async () => {
   if (cachedDB) {
     const hasAConnection = mongoose.connections.find(
       (connection) => connection.readyState === 1
@@ -25,6 +16,15 @@ const connectToDatabase = async () => {
 
   mongoose.set('strictQuery', false);
 
+  const {
+    MONGO_CONNECTION_TYPE,
+    MONGO_USERNAME,
+    MONGO_PASSWORD,
+    MONGO_HOST,
+    MONGO_DATABASE,
+    MONGO_SSL,
+  } = process.env;
+
   const mongoOptions = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -35,16 +35,19 @@ const connectToDatabase = async () => {
     family: 4,
   };
 
-  const mongooseInstance = await mongoose.connect(
-    `${MONGO_CONNECTION_TYPE}://${
-      MONGO_USERNAME && `${MONGO_USERNAME}:${MONGO_PASSWORD}@`
-    }${MONGO_HOST}/${MONGO_DATABASE}?retryWrites=true&w=majority`,
-    mongoOptions
-  );
+  try {
+    const mongooseInstance = await mongoose.connect(
+      `${MONGO_CONNECTION_TYPE}://${
+        MONGO_USERNAME && `${MONGO_USERNAME}:${MONGO_PASSWORD}@`
+      }${MONGO_HOST}/${MONGO_DATABASE}?retryWrites=true&w=majority`,
+      mongoOptions
+    );
 
-  console.log('Connected to database');
+    console.log('Connected to database');
 
-  cachedDB = mongooseInstance;
+    cachedDB = mongooseInstance;
+  } catch (error) {
+    console.error('Error connecting to database:', error);
+    throw error;
+  }
 };
-
-export default { connectToDatabase };

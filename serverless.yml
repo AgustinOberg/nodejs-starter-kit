@@ -1,0 +1,19 @@
+org: agusoberg11
+app: agus-express-testing-app
+service: agus-express-testing-app
+frameworkVersion: '3'
+##### TODO: domain
+plugins:
+  - serverless-dotenv-plugin
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: dev
+  region: us-east-1
+
+functions:
+  app:
+    handler: ./dist/app.handler
+    events:
+      - httpApi: '*'
