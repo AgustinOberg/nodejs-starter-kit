@@ -18,6 +18,7 @@ statusRouter.get('/', (_, res) =>
     database: {
       state: mongoose.connection.readyState,
       description: mongoose.connection.readyState === 1 ? 'ONLINE' : 'OFFLINE',
+      environment: process.env.NODE_ENV,
     },
   })
 );

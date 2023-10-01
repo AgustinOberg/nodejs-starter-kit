@@ -2,6 +2,7 @@ org: agusoberg11
 app: agus-express-testing-app
 service: agus-express-testing-app
 frameworkVersion: '3'
+##### TODO: domain
 plugins:
   - serverless-dotenv-plugin
 
