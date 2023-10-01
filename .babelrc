@@ -7,6 +7,15 @@
         "regenerator": true,
         "corejs": 3
       }
+    ],
+    [
+      "module-resolver",
+      {
+        "root": ["./src"],
+        "alias": {
+          "@": "./src"
+        }
+      }
     ]
   ]
 }

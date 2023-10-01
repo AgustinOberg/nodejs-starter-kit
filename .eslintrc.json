@@ -14,6 +14,11 @@
     "es2021": true,
     "node": true
   },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  },
   "rules": {
     "import/no-unresolved": "error"
   }

@@ -1,6 +1,6 @@
-import environments from '../constants/environment';
+import environments from '@/constants/environment';
 const { LOCAL, TEST } = environments;
-import { connectToDatabase } from '../database/connection';
+import { connectToDatabase } from '@/database/connection';
 const AVAILABLE_ENVIRONMENTS = [LOCAL, TEST];
 const isLocal = AVAILABLE_ENVIRONMENTS.includes(process.env.NODE_ENV);
 

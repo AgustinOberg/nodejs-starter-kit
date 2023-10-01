@@ -1,5 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
-import { create } from '../../services/serverService';
+import { create } from '@/services/serverService';
 
 export const createDbServer = async (req, res, next) => {
   try {
