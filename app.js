@@ -2,9 +2,9 @@ import 'dotenv/config';
 import serverless from 'serverless-http';
 import { connectToDatabase } from './src/database/connection';
 import app from './src/server';
-import { runLocal } from './src/utils/debug';
+import { runApp } from './src/utils/debug';
 
-runLocal(app);
+runApp(app);
 
 module.exports.handler = async (event, context) => {
   await connectToDatabase();

@@ -109,7 +109,6 @@ api_docs*.json
 
 # env files
 .env.development
-.env.development.local
 .env.production
 
 # TODO: remove

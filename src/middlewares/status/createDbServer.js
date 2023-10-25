@@ -5,6 +5,7 @@ export const createDbServer = async (req, res, next) => {
   try {
     const newServer = await create(req.body);
     res.status(StatusCodes.CREATED).send(newServer);
+    next();
   } catch (error) {
     return next(error);
   }
