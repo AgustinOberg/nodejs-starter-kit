@@ -5,10 +5,28 @@ import app from './src/server';
 import { runApp } from './src/utils/debug';
 
 runApp(app);
+let serverlesApp;
+
+async function asyncTasks() {
+  try {
+    await connectToDatabase();
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function setup(event, context) {
+  await asyncTasks();
+  serverlesApp = serverless(app);
+  const response = await serverlesApp(event, context);
+  return response;
+}
 
 module.exports.handler = async (event, context) => {
-  await connectToDatabase();
-  const serverlessApp = serverless(app);
-  const response = await serverlessApp(event, context);
-  return response;
+  if (serverlesApp) {
+    const res = await serverlesApp(event, context);
+    return res;
+  }
+
+  return setup(event, context);
 };
