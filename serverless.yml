@@ -1,6 +1,6 @@
-org: your-organization-name
-app: your-serverless-app-name
-service: your-service-name
+org: agusoberg11
+app: agus-express-testing-app
+service: agus-express-testing-app
 frameworkVersion: '3'
 ##### TODO: domain
 plugins:
@@ -14,6 +14,6 @@ provider:
 
 functions:
   app:
-    handler: ./dist/app.handler
+    handler: ./bundle.handler
     events:
       - httpApi: '*'
